@@ -1,0 +1,24 @@
+services:
+  usp-mysql:
+    container_name: usp-mysql
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: usp
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - "3307:3306"
+    volumes:
+      - ../data/mysql:/var/lib/mysql
+    networks:
+      - usp
+
+volumes:
+  mysql:
+networks:
+  usp:
+    name: usp
+
+# docker-compose -f docker-compose-files/usp_mysql.yml -p usp_mysql up --build -d
+# init data => - ./db/usp.sql:/docker-entrypoint-initdb.d/usp.sql
+# save persist data => - ./data/mysql:/var/lib/mysql
