@@ -6,7 +6,7 @@ services:
 #      - usp-mysql
     entrypoint: ["flyway", "-url=jdbc:mysql://usp-mysql:3306/usp?allowPublicKeyRetrieval=true", "-user=root", "-password=123456", "-baselineOnMigrate=true", "migrate"]
     volumes:
-      - ../data/sql_migrations:/flyway/sql
+      - ../flyway/sql_migrations:/flyway/sql
     networks:
       - usp
 networks:

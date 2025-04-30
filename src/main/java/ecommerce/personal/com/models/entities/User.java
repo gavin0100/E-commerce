@@ -1,7 +1,7 @@
 package ecommerce.personal.com.models.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import ecommerce.personal.com.models.enums.Gender;
+import ecommerce.personal.com.enums.Gender;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
