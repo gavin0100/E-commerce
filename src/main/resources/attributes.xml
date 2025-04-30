@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE entities [
+        <!ELEMENT attribute EMPTY>
+        <!ELEMENT entity (attribute*)>
+        <!ELEMENT entities (entity*)>
+
+        <!ATTLIST entity id ID #REQUIRED>
+        <!ATTLIST attribute id ID #REQUIRED>
+        <!ATTLIST attribute name CDATA #REQUIRED>
+        <!ATTLIST attribute enumValue CDATA #IMPLIED>
+        <!ATTLIST attribute inlist CDATA #IMPLIED>
+        <!ATTLIST attribute type (text|number|date|time|timestamp|object|enum) #REQUIRED>
+        <!ATTLIST attribute required (true|false) #REQUIRED>
+        <!ATTLIST attribute regex CDATA #IMPLIED>
+        <!ATTLIST attribute minLength CDATA #IMPLIED>
+        <!ATTLIST attribute maxLength CDATA #IMPLIED>
+        ]>
+
+<entities>
+     <entity id="userModel">
+         <attribute id="user_userId" name="userId" type="text" required="true"/>
+         <attribute id="user_name" name="name" type="text" required="false"/>
+         <attribute id="user_email" name="email" type="text" required="false"/>
+         <attribute id="user_phoneNumber" name="text" type="text" minLength="10" maxLength="11" regex="^\+?\d{10,11}$" required="false"/>
+         <attribute id="user_gender" name="gender" type="enum" enumValue="ecommerce.personal.com.enums.Gender" required="false"/>
+         <attribute id="user_age" name="age" type="number" required="false"/>
+         <attribute id="user_dateOfBirth" name="dateOfBirth" type="date" required="false"/>
+     </entity>
+</entities>

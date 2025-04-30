@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>ecommerce</groupId>
 	<artifactId>personal.com</artifactId>
-	<version>0.0.0200</version>
+	<version>0.0.0300</version>
 	<name>E-commerce</name>
 	<description>Ecommerce</description>
 	<url/>
@@ -57,7 +57,14 @@
 		<dependency>
 			<groupId>ecommerce.com</groupId>
 			<artifactId>lib</artifactId>
-			<version>0.0.0100</version>
+			<version>0.0.0200</version>
+		</dependency>
+
+<!--		used for load model's attribute from xml file.
+When use this dependency, @JsonValue will serialize (main feature) and deserialize (additional)-->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
 		</dependency>
 	</dependencies>
 

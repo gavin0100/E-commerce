@@ -1,4 +1,4 @@
-package ecommerce.personal.com.models.enums;
+package ecommerce.personal.com.enums;
 
 import lombok.RequiredArgsConstructor;
 
