@@ -3,9 +3,9 @@ package ecommerce.personal.com.services.impl;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import ecommerce.com.lib.exceptions.EcException;
-import ecommerce.personal.com.enums.ConfigurableModel;
-import ecommerce.personal.com.models.dtos.ConfiguredAttribute;
-import ecommerce.personal.com.models.dtos.ConfiguredEntity;
+import ecommerce.personal.com.enums.ConfiguredModel;
+import ecommerce.com.lib.models.dtos.ConfiguredAttribute;
+import ecommerce.com.lib.models.dtos.ConfiguredEntity;
 import ecommerce.personal.com.services.ModelConfigManager;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class ModelConfigManagerImpl implements ModelConfigManager {
     }
 
     @Override
-    public Set<ConfiguredAttribute> getAllEntityAttributes(ConfigurableModel entity) {
+    public Set<ConfiguredAttribute> getAllEntityAttributes(ConfiguredModel entity) {
         if (Objects.isNull(entity)) {
             return Collections.emptySet();
         }
