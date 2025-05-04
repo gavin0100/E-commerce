@@ -3,16 +3,20 @@ package ecommerce.personal.com.services.impl;
 import ecommerce.com.lib.models.dtos.ConfiguredAttribute;
 import ecommerce.com.lib.utils.validators.AttributeValidator;
 import ecommerce.personal.com.enums.ConfiguredModel;
+import ecommerce.personal.com.models.entities.Product;
 import ecommerce.personal.com.models.entities.User;
+import ecommerce.personal.com.repositories.ProductRepository;
 import ecommerce.personal.com.repositories.UserRepository;
 import ecommerce.personal.com.services.ModelConfigManager;
 import ecommerce.personal.com.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
 import java.util.Set;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -20,6 +24,7 @@ import java.util.Set;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final ModelConfigManager modelConfigManager;
+    private final ProductRepository productRepository;
 
     @Override
     public void saveUser(User user, String attributeName, String attributeValue) {
@@ -34,6 +39,13 @@ public class UserServiceImpl implements UserService {
                     .findFirst()
                     .orElse("Valid value");
             log.info(errorMessage);
+
+            Product product = Product.builder()
+                    .productId(UUID.randomUUID().toString())
+                    .name(RandomStringUtils.randomAlphanumeric(10))
+                    .user(user)
+                    .build();
+            productRepository.save(product);
         } catch (Exception ex){
             log.error("",ex);
         }

@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -23,6 +25,12 @@ public class UserController {
             @RequestParam(value = "attributeValue") String attributeValue) {
         User user = User.builder().userId(UUID.randomUUID().toString()).age(12).dateOfBirth(LocalDate.now()).gender(Gender.NOT_APPLICABLE).build();
         userService.saveUser(user, attributeName, attributeValue);
+        return ResponseEntity.ok().body("hello world");
+    }
+
+    @PostMapping("/hihi")
+    public ResponseEntity<?> testPostController(@RequestBody User user){
+        userService.saveUser(user, null, null);
         return ResponseEntity.ok().body("hello world");
     }
 }
