@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -17,9 +18,11 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/hihi")
-    public ResponseEntity<?> testController() {
+    public ResponseEntity<?> testController(
+            @RequestParam(value = "attributeName") String attributeName,
+            @RequestParam(value = "attributeValue") String attributeValue) {
         User user = User.builder().userId(UUID.randomUUID().toString()).age(12).dateOfBirth(LocalDate.now()).gender(Gender.NOT_APPLICABLE).build();
-        userService.saveUser(user);
+        userService.saveUser(user, attributeName, attributeValue);
         return ResponseEntity.ok().body("hello world");
     }
 }

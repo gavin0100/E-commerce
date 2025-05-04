@@ -1,7 +1,7 @@
 package ecommerce.personal.com.startup;
 
 import ecommerce.com.lib.exceptions.EcException;
-import ecommerce.personal.com.enums.ConfigurableModel;
+import ecommerce.personal.com.enums.ConfiguredModel;
 import ecommerce.personal.com.services.ModelConfigManager;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
@@ -28,6 +28,7 @@ public class ModelConfigStartupLoader implements ApplicationListener<Application
             log.info("ModelConfigStartupLoader | onApplicationEvent | Load attributes configuration from attribute.xml");
             File attributeConfigFile = ResourceUtils.getFile(ATTRIBUTES_CONFIG_PATH);
             modelConfigManager.loadConfig(attributeConfigFile);
+            log.info("{}", modelConfigManager.getAllEntityAttributes(ConfiguredModel.USER));
         } catch (FileNotFoundException ex) {
             throw new EcException("Failed to load attributes.xml from classpath:", ex);
         }

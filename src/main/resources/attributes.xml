@@ -21,7 +21,7 @@
          <attribute id="user_userId" name="userId" type="text" required="true"/>
          <attribute id="user_name" name="name" type="text" required="false"/>
          <attribute id="user_email" name="email" type="text" required="false"/>
-         <attribute id="user_phoneNumber" name="text" type="text" minLength="10" maxLength="11" regex="^\+?\d{10,11}$" required="false"/>
+         <attribute id="user_phoneNumber" name="phoneNumber" type="text" minLength="10" maxLength="11" regex="^\+?\d{10,11}$" required="false"/>
          <attribute id="user_gender" name="gender" type="enum" enumValue="ecommerce.personal.com.enums.Gender" required="false"/>
          <attribute id="user_age" name="age" type="number" required="false"/>
          <attribute id="user_dateOfBirth" name="dateOfBirth" type="date" required="false"/>
