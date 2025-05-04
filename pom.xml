@@ -80,6 +80,12 @@ When use this dependency, @JsonValue will serialize (main feature) and deseriali
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>${springdoc.version}</version>
 		</dependency>
+
+        <!--	actuator to check the health of the app-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
 	</dependencies>
 
 	<build>
