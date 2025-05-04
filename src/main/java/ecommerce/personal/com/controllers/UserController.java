@@ -3,19 +3,21 @@ package ecommerce.personal.com.controllers;
 import ecommerce.personal.com.models.entities.User;
 import ecommerce.personal.com.enums.Gender;
 import ecommerce.personal.com.services.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Controller
+@RestController
 @RequiredArgsConstructor
+@Tag(name = "User Controller")
 public class UserController {
     private final UserService userService;
 
