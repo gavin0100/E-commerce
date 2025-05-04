@@ -23,15 +23,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void saveUser(User user, String attributeName, String attributeValue) {
-        userRepository.save(user);
-        Set<ConfiguredAttribute> configuredAttributes = modelConfigManager.getAllEntityAttributes(ConfiguredModel.USER);
-        AttributeValidator attributeValidator = AttributeValidator.Factory.getDefaultValidator();
-        String errorMessage = configuredAttributes.stream()
-                .filter(config -> attributeName.equals(config.getName()))
-                .map(config -> attributeValidator.validate(config, attributeValue))
-                .filter(Objects::nonNull)
-                .findFirst()
-                .orElse("Valid value");
-        log.info(errorMessage);
+        try {
+            userRepository.save(user);
+            Set<ConfiguredAttribute> configuredAttributes = modelConfigManager.getAllEntityAttributes(ConfiguredModel.USER);
+            AttributeValidator attributeValidator = AttributeValidator.Factory.getDefaultValidator();
+            String errorMessage = configuredAttributes.stream()
+                    .filter(config -> attributeName.equals(config.getName()))
+                    .map(config -> attributeValidator.validate(config, attributeValue))
+                    .filter(Objects::nonNull)
+                    .findFirst()
+                    .orElse("Valid value");
+            log.info(errorMessage);
+        } catch (Exception ex){
+            log.error("",ex);
+        }
     }
 }
