@@ -28,8 +28,8 @@ public class UserController {
 
     @GetMapping("/hihi")
     public ResponseEntity<?> testController(
-            @RequestParam(value = "attributeName") String attributeName,
-            @RequestParam(value = "attributeValue") String attributeValue,
+            @RequestParam(value = "attributeName", required = false) String attributeName,
+            @RequestParam(value = "attributeValue", required = false) String attributeValue,
             @SearchAttributes(exclude = {"attributeName", "attributeValue"})
 //            @RequestParam
             Map<String, Object> attributes) {

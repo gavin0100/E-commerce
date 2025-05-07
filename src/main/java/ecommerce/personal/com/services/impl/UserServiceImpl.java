@@ -1,5 +1,6 @@
 package ecommerce.personal.com.services.impl;
 
+import ecommerce.com.lib.exceptions.EcException;
 import ecommerce.com.lib.models.dtos.ConfiguredAttribute;
 import ecommerce.com.lib.utils.validators.AttributeValidator;
 import ecommerce.personal.com.enums.ConfiguredModel;
@@ -12,6 +13,7 @@ import ecommerce.personal.com.services.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.hibernate.exception.SQLGrammarException;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -27,7 +29,7 @@ public class UserServiceImpl implements UserService {
     private final ProductRepository productRepository;
 
     @Override
-    public void saveUser(User user, String attributeName, String attributeValue) {
+    public void saveUser(User user, String attributeName, String attributeValue) throws NullPointerException{
         try {
             userRepository.save(user);
             Set<ConfiguredAttribute> configuredAttributes = modelConfigManager.getAllEntityAttributes(ConfiguredModel.USER);
@@ -46,7 +48,11 @@ public class UserServiceImpl implements UserService {
                     .user(user)
                     .build();
             productRepository.save(product);
-        } catch (Exception ex){
+
+            if (attributeName.equals("!") && attributeValue.equals("!")){
+                throw new EcException("This is test EcException for audit");
+            }
+        } catch (SQLGrammarException ex){
             log.error("",ex);
         }
     }
