@@ -2,6 +2,7 @@ package ecommerce.personal.com.services.impl;
 
 import ecommerce.com.lib.exceptions.EcException;
 import ecommerce.com.lib.models.dtos.ConfiguredAttribute;
+import ecommerce.com.lib.utils.HttpUtils;
 import ecommerce.com.lib.utils.validators.AttributeValidator;
 import ecommerce.personal.com.enums.ConfiguredModel;
 import ecommerce.personal.com.models.entities.Product;
@@ -52,6 +53,8 @@ public class UserServiceImpl implements UserService {
             if (attributeName.equals("!") && attributeValue.equals("!")){
                 throw new EcException("This is test EcException for audit");
             }
+
+            log.info("Current request: {}", HttpUtils.getCurrentRequest());
         } catch (SQLGrammarException ex){
             log.error("",ex);
         }
