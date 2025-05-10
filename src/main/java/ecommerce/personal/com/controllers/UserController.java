@@ -1,6 +1,7 @@
 package ecommerce.personal.com.controllers;
 
 import ecommerce.com.lib.annotations.SearchAttributes;
+import ecommerce.com.lib.annotations.ValueInList;
 import ecommerce.personal.com.models.entities.User;
 import ecommerce.personal.com.enums.Gender;
 import ecommerce.personal.com.services.UserService;
@@ -32,8 +33,11 @@ public class UserController {
             @RequestParam(value = "attributeValue", required = false) String attributeValue,
             @SearchAttributes(exclude = {"attributeName", "attributeValue"})
 //            @RequestParam
-            Map<String, Object> attributes) {
+            Map<String, Object> attributes,
+            @ValueInList(extensions = "list.image")
+            @RequestParam(value = "imageType", required = false) String imageType) {
         log.info("attributes: {}", attributes);
+        log.info("imageType: {}", imageType);
         User user = User.builder().userId(UUID.randomUUID().toString()).age(12).dateOfBirth(LocalDate.now()).gender(Gender.NOT_APPLICABLE).build();
         userService.saveUser(user, attributeName, attributeValue);
         return ResponseEntity.ok().body("hello world");

@@ -94,6 +94,12 @@ When use this dependency, @JsonValue will serialize (main feature) and deseriali
 			<version>5.0.0</version>
 			<scope>provided</scope>
 		</dependency>
+
+<!--		used to custom validation annotation-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
             }
 
             log.info("Current request: {}", HttpUtils.getCurrentRequest());
-        } catch (SQLGrammarException ex){
+        } catch (SQLGrammarException ex){   
             log.error("",ex);
         }
     }
