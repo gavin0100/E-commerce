@@ -10,7 +10,7 @@
 
     <appender name="TRANSACTION_CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%date{ISO8601} [%thread] %-5level %logger - %msg%n</pattern>
+            <pattern>%date{ISO8601} [%thread] [%X{transactionKey}] %-5level %logger - %msg%n</pattern>
         </encoder>
     </appender>
     <property name="LOG_DIR" value="${transaction-id.tracking.log.dir}"/>
@@ -24,7 +24,7 @@
             <totalSizeCap>500MB</totalSizeCap>
         </rollingPolicy>
         <encoder>
-            <pattern>%date{ISO8601} [%thread] %-5level %logger - %msg%n</pattern>
+            <pattern>%date{ISO8601} [%thread] [%X{transactionKey}] %-5level %logger - %msg%n</pattern>
         </encoder>
     </appender>
 

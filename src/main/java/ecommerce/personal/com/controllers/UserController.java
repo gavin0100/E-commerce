@@ -1,5 +1,6 @@
 package ecommerce.personal.com.controllers;
 
+import ecommerce.com.lib.annotations.LogTransaction;
 import ecommerce.com.lib.annotations.SearchAttributes;
 import ecommerce.com.lib.annotations.ValueInList;
 import ecommerce.personal.com.models.entities.User;
@@ -24,6 +25,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Tag(name = "User Controller")
 @Slf4j
+@LogTransaction
 public class UserController {
     private final UserService userService;
 
@@ -35,9 +37,11 @@ public class UserController {
 //            @RequestParam
             Map<String, Object> attributes,
             @ValueInList(extensions = "list.image")
-            @RequestParam(value = "imageType", required = false) String imageType) {
+            @RequestParam(value = "imageType", required = false) String imageType,
+            @RequestParam(value = "transactionKey", required = false) String transactionKey) {
         log.info("attributes: {}", attributes);
         log.info("imageType: {}", imageType);
+        log.info("transactionKey: {}", transactionKey);
         User user = User.builder().userId(UUID.randomUUID().toString()).age(12).dateOfBirth(LocalDate.now()).gender(Gender.NOT_APPLICABLE).build();
         userService.saveUser(user, attributeName, attributeValue);
         return ResponseEntity.ok().body("hello world");
