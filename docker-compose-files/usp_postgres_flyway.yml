@@ -1,0 +1,18 @@
+services:
+  usp_postgres_flyway:
+    container_name: usp_postgres_flyway
+    image: flyway/flyway:latest
+#    depends_on:
+#      - usp-postgres
+    entrypoint: ["flyway", "-url=jdbc:postgresql://usp-postgres:5432/usp", "-user=usp", "-password=123456", "-baselineOnMigrate=true", "migrate"]
+    volumes:
+      - ../flyway/sql_migrations_postgres:/flyway/sql
+    networks:
+      - usp-postgres
+networks:
+  usp-postgres:
+    external: true
+volumes:
+  sql_migrations:
+# docker-compose -f  docker-compose-files/usp_postgres_flyway.yml -p usp_postgres_flyway up --build -d
+# docker-compose -f docker-compose-files/usp_postgres.yml -f docker-compose-files/usp_postgres_flyway.yml up --build -d

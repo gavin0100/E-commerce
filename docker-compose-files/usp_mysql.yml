@@ -11,13 +11,13 @@ services:
     volumes:
       - ../data/mysql:/var/lib/mysql
     networks:
-      - usp
+      - usp-mysql
 
 volumes:
   mysql:
 networks:
-  usp:
-    name: usp
+  usp-mysql:
+    name: usp-mysql
 
 # docker-compose -f docker-compose-files/usp_mysql.yml -p usp_mysql up --build -d
 # init data => - ./db/usp.sql:/docker-entrypoint-initdb.d/usp.sql

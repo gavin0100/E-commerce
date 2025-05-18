@@ -1,0 +1,26 @@
+services:
+  usp-postgres:
+    container_name: usp-postgres
+    image: postgres:14.1-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-usp}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-123456}
+      POSTGRES_DB: usp
+      PGDATA: /data/postgres
+    volumes:
+      - ../data/postgres:/data/postgres
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+    networks:
+      - usp-postgres
+
+volumes:
+  postgres:
+networks:
+  usp-postgres:
+    name: usp-postgres
+
+#docker-compose -f docker-compose-files/usp_postgres.yml -p usp_postgres up --build -d
+# init data => - ./db/usp.sql:/docker-entrypoint-initdb.d/usp.sql
+# save persist data => - ./data/postgres:/data/postgres

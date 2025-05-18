@@ -1,0 +1,18 @@
+services:
+  usp_mysql_flyway:
+    container_name: usp_mysql_flyway
+    image: flyway/flyway:latest
+#    depends_on:
+#      - usp-mysql
+    entrypoint: ["flyway", "-url=jdbc:mysql://usp-mysql:3306/usp?allowPublicKeyRetrieval=true", "-user=root", "-password=123456", "-baselineOnMigrate=true", "migrate"]
+    volumes:
+      - ../flyway/sql_migrations_mysql:/flyway/sql
+    networks:
+      - usp-mysql
+networks:
+  usp-mysql:
+    external: true
+volumes:
+  sql_migrations:
+# docker-compose -f  docker-compose-files/usp_mysql_flyway.yml -p usp_mysql_flyway up --build -d
+# docker-compose -f docker-compose-files/usp_mysql.yml -f docker-compose-files/usp_mysql_flyway.yml up --build -d
